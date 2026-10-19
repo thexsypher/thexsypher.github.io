@@ -1,0 +1,96 @@
+name: Sync Latest Publications from xSypher
+
+on:
+  schedule:
+    # Runs every 6 hours to fetch newly published xSypher articles and update index.html + JSON-LD
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/sync.mjs"
+      - ".github/workflows/sync.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: xsypher-gh-pages-sync
+  cancel-in-progress: false
+
+jobs:
+  sync-publications:
+    name: Fetch Live Feed, Validate HTTP 200 & Update SEO Hub
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout GitHub Pages Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Synchronize Articles & Dynamic JSON-LD from xsypher.com
+        env:
+          SITE_URL: "https://xsypher.com"
+          CANONICAL_ORIGIN: "https://xsypher.com"
+          MAX_ARTICLES: "12"
+          OG_CONCURRENCY: "5"
+        run: |
+          set -euo pipefail
+          node scripts/sync.mjs
+
+      - name: Verify Technical SEO & Dofollow Integrity
+        run: |
+          set -euo pipefail
+          echo "Verifying index.html SEO invariants..."
+
+          # 1. Zero localhost or example.com leaks
+          if grep -qE 'href="https?://(localhost|127\.0\.0\.1|example\.com)' index.html; then
+            echo "ERROR: Non-canonical loopback or placeholder URL detected in index.html"
+            exit 1
+          fi
+
+          # 2. 100% Dofollow architecture on anchor tags (no rel="nofollow" or rel="sponsored")
+          if grep -qiE '<a[^>]+rel=["'\''][^"'\'']*(nofollow|sponsored|ugc)' index.html; then
+            echo "ERROR: Dofollow invariant violated — restrictive rel attribute found on <a> tag"
+            exit 1
+          fi
+
+          # 3. Verify canonical article links exist
+          if ! grep -q 'https://xsypher.com/article/' index.html; then
+            echo "ERROR: No canonical article links found in index.html"
+            exit 1
+          fi
+
+          # 4. Verify JSON-LD structured data blocks exist and parse as valid JSON
+          node -e '
+            const fs = require("fs");
+            const html = fs.readFileSync("index.html", "utf8");
+            const re = /<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi;
+            let m, count = 0;
+            while ((m = re.exec(html)) !== null) {
+              JSON.parse(m[1]);
+              count++;
+            }
+            if (count < 2) throw new Error("Expected at least 2 JSON-LD blocks, found " + count);
+            console.log("Verified " + count + " valid JSON-LD structured data blocks.");
+          '
+
+      - name: Commit & Push Updated Showcase Page
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- index.html; then
+            echo "No content changes detected in index.html — skipping commit."
+            exit 0
+          fi
+          git config user.name "xSypher Automated Sync"
+          git config user.email "bot@xsypher.com"
+          git add index.html
+          git commit -m "chore(seo): sync latest publications & JSON-LD from xsypher.com [$(date -u +'%Y-%m-%d %H:%M UTC')]"
+          git push origin HEAD:main
