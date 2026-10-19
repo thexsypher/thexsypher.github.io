@@ -715,6 +715,7 @@ function renderArticleCard(article, isFeatured) {
               <img src="${escapeHtml(FALLBACK_ICON)}" alt="" width="22" height="22" loading="lazy">
               <span itemprop="name">${author}</span>
             </span>
+            <span class="card-source-tag" title="Original Publication Source">xsypher.com</span>
             <span class="card-date"><time datetime="${dateIso}" itemprop="datePublished">${dateDisplay}</time></span>
           </div>
           <a href="${url}" class="card-cta">Read full analysis on xSypher <span aria-hidden="true">→</span></a>
@@ -735,6 +736,7 @@ function buildCollectionJsonLd(articles) {
       "headline": a.title,
       "description": a.deck,
       "url": a.canonicalUrl,
+      "isBasedOn": a.canonicalUrl,
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": a.canonicalUrl,
@@ -757,6 +759,7 @@ function buildCollectionJsonLd(articles) {
         "@type": "Organization",
         "@id": `${CANONICAL_ORIGIN}/#organization`,
         "name": "xSypher Media",
+        "url": `${CANONICAL_ORIGIN}/`,
         "logo": {
           "@type": "ImageObject",
           "url": `${CANONICAL_ORIGIN}/xsypher-logo-full.png`,
@@ -773,11 +776,11 @@ function buildCollectionJsonLd(articles) {
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "@id": `${CANONICAL_ORIGIN}/#showcase-collection`,
-    "name": "xSypher — Latest Publications & Engineering Deep Dives",
+    "@id": "https://thexsypher.github.io/#showcase-collection",
+    "name": "xSypher — Engineering Showcase & Selected Publications",
     "description":
       "Live syndicated index of the latest original engineering deep dives, cybersecurity advisories, AI benchmarks and hardware reviews published on xSypher.",
-    "url": `${CANONICAL_ORIGIN}/`,
+    "url": "https://thexsypher.github.io/",
     "isPartOf": { "@id": `${CANONICAL_ORIGIN}/#website` },
     "about": { "@id": `${CANONICAL_ORIGIN}/#organization` },
     "publisher": { "@id": `${CANONICAL_ORIGIN}/#organization` },
@@ -840,7 +843,7 @@ function updateIndexHtml(originalHtml, articles) {
   // 3. Update sync status badge & build timestamp
   html = html.replace(
     /<span id="sync-text">[\s\S]*?<\/span>/,
-    `<span id="sync-text">Synced ${escapeHtml(syncDate)} · ${articles.length} verified HTTP 200 canonical links</span>`
+    `<span id="sync-text">Live Editorial Feed · Updated ${escapeHtml(syncDate)}</span>`
   );
   html = html.replace(
     /<time id="build-time"[^>]*>[\s\S]*?<\/time>/,
