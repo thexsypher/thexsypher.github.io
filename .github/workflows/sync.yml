@@ -85,12 +85,12 @@ jobs:
       - name: Commit & Push Updated Showcase Page
         run: |
           set -euo pipefail
-          if git diff --quiet -- index.html; then
-            echo "No content changes detected in index.html — skipping commit."
+          git add -A index.html articles/
+          if git diff --cached --quiet; then
+            echo "No content changes detected in index.html or articles/ — skipping commit."
             exit 0
           fi
           git config user.name "xSypher Automated Sync"
           git config user.email "bot@xsypher.com"
-          git add index.html
           git commit -m "chore(seo): sync latest publications & JSON-LD from xsypher.com [$(date -u +'%Y-%m-%d %H:%M UTC')]"
           git push origin HEAD:main

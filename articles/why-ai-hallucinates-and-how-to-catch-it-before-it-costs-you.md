@@ -4,9 +4,14 @@ description: "Language models are trained to guess, not to say \"I don't know.\"
 canonical_url: "https://xsypher.com/article/why-ai-hallucinates-and-how-to-catch-it-before-it-costs-you"
 published_at: "2026-10-15T22:28:48.508Z"
 author: "Anwar Iqbal Dawar"
-category: "Large Language Models"
-category_slug: "large-language-models"
-tags: []
+category: "Ai"
+category_slug: "ai"
+tags:
+  - "llm evaluation"
+  - "ai fact-checking"
+  - "large language models"
+  - "ai hallucinations"
+cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/d0b12bb3-98b3-419f-906c-2c6d1abb69c9.webp"
 ---
 
 # Why AI Hallucinates and How to Catch It Before It Costs You
@@ -23,5 +28,5 @@ Language models are trained to guess, not to say "I don't know." Here is why the
 Read the full analysis, verified benchmarks, and interactive system models on **[xSypher: Why AI Hallucinates and How to Catch It Before It Costs You](https://xsypher.com/article/why-ai-hallucinates-and-how-to-catch-it-before-it-costs-you)**.
 
 - **Canonical Reference:** [https://xsypher.com/article/why-ai-hallucinates-and-how-to-catch-it-before-it-costs-you](https://xsypher.com/article/why-ai-hallucinates-and-how-to-catch-it-before-it-costs-you)
-- **Editorial Vertical:** [Large Language Models](https://xsypher.com/category/large-language-models)
+- **Editorial Vertical:** [Ai](https://xsypher.com/category/ai)
 - **Publisher:** [xSypher Media](https://xsypher.com)

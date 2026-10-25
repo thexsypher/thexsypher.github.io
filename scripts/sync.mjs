@@ -797,6 +797,114 @@ function buildCollectionJsonLd(articles) {
   };
 }
 
+function renderLiveIndex(articles) {
+  const items = articles
+    .map((a) => {
+      const url = escapeHtml(a.canonicalUrl);
+      const title = escapeHtml(a.title);
+      const rawSnippet = a.deck || a.description || "Independent technology news, deep-dive analysis, and research.";
+      const cleanSnippet = rawSnippet.trim().replace(/\s+/g, " ");
+      const snippet = escapeHtml(
+        cleanSnippet.length > 160 ? `${cleanSnippet.slice(0, 157).trim()}...` : cleanSnippet
+      );
+      return `        <li><a href="${url}" rel="dofollow"><strong>${title}</strong></a> - ${snippet}</li>`;
+    })
+    .join("\n");
+
+  return [
+    `    <!-- LIVE_INDEX_START -->`,
+    `    <div class="live-index-wrapper" style="margin: 2rem 0; padding: 1.5rem; background: var(--card, #12151f); border: 1px solid var(--line, #1e2636); border-radius: var(--radius, 14px);">`,
+    `      <h3 style="font-family: var(--font-display, inherit); font-size: 1.15rem; margin-top: 0; margin-bottom: 0.75rem; color: var(--ink, #fff);">Real-Time Publication Index</h3>`,
+    `      <ul class="live-editorial-index" style="list-style: disc; padding-left: 1.5rem; margin: 0; display: flex; flex-direction: column; gap: 0.65rem;">`,
+    items,
+    `      </ul>`,
+    `    </div>`,
+    `    <!-- LIVE_INDEX_END -->`,
+  ].join("\n");
+}
+
+function syncArticleMarkdownFiles(articles) {
+  const articlesDir = path.resolve(__dirname, "..", "articles");
+  if (!fs.existsSync(articlesDir)) {
+    fs.mkdirSync(articlesDir, { recursive: true });
+  }
+
+  let count = 0;
+  for (const a of articles) {
+    if (!a.slug) continue;
+    const filePath = path.join(articlesDir, `${a.slug}.md`);
+    const canonicalUrl = a.canonicalUrl || `${CANONICAL_ORIGIN}/article/${a.slug}`;
+    const pubIso = a.publishedAt && !isNaN(a.publishedAt.getTime())
+      ? a.publishedAt.toISOString()
+      : new Date().toISOString();
+    const pubDateStr = pubIso.slice(0, 10);
+    const summary = a.deck || a.description || "";
+    const cleanSnippet = summary.trim().replace(/\s+/g, " ");
+    const snippet = cleanSnippet.length > 280 ? `${cleanSnippet.slice(0, 277).trim()}...` : cleanSnippet;
+    const author = a.author || "xSypher Editorial Team";
+    const categoryName = a.categoryName || "Technology";
+    const categorySlug = a.categorySlug || categoryName.toLowerCase().replace(/[^a-z0-9_-]/g, "-");
+    const tags = Array.isArray(a.tags) ? a.tags : [];
+
+    const yamlLines = [
+      "---",
+      `title: ${JSON.stringify(a.title)}`,
+      `description: ${JSON.stringify(snippet)}`,
+      `canonical_url: ${JSON.stringify(canonicalUrl)}`,
+      `published_at: ${JSON.stringify(pubIso)}`,
+      `author: ${JSON.stringify(author)}`,
+      `category: ${JSON.stringify(categoryName)}`,
+      `category_slug: ${JSON.stringify(categorySlug)}`,
+    ];
+
+    if (tags.length > 0) {
+      yamlLines.push("tags:");
+      for (const t of tags) {
+        yamlLines.push(`  - ${JSON.stringify(t)}`);
+      }
+    } else {
+      yamlLines.push("tags: []");
+    }
+
+    if (a.image) {
+      yamlLines.push(`cover_image: ${JSON.stringify(a.image)}`);
+    }
+
+    yamlLines.push("---");
+    yamlLines.push("");
+
+    const bodyLines = [
+      `# ${a.title}`,
+      "",
+      `> **Original Publication:** This research was originally published on **[xSypher](${canonicalUrl})** on ${pubDateStr}.`,
+      "",
+      "## Executive Summary",
+      "",
+      summary ? summary.trim() : snippet,
+      "",
+      "---",
+      "",
+      "### Primary Research & Full Investigation",
+      `Read the full analysis, verified benchmarks, and interactive system models on **[xSypher: ${a.title}](${canonicalUrl})**.`,
+      "",
+      `- **Canonical Reference:** [${canonicalUrl}](${canonicalUrl})`,
+      `- **Editorial Vertical:** [${categoryName}](${CANONICAL_ORIGIN}/category/${categorySlug})`,
+      `- **Publisher:** [xSypher Media](${CANONICAL_ORIGIN})`,
+      "",
+    ];
+
+    const content = [...yamlLines, ...bodyLines].join("\n");
+    if (!fs.existsSync(filePath) || fs.readFileSync(filePath, "utf8") !== content) {
+      fs.writeFileSync(filePath, content, "utf8");
+      count++;
+    }
+  }
+
+  if (count > 0) {
+    log(`Synchronized ${count} article markdown files in articles/.`);
+  }
+}
+
 function updateIndexHtml(originalHtml, articles) {
   const gridCards = articles
     .map((a, idx) => renderArticleCard(a, idx === 0 && articles.length >= 4))
@@ -812,7 +920,15 @@ function updateIndexHtml(originalHtml, articles) {
 
   let html = originalHtml;
 
-  // 1. Inject article cards between <!-- ARTICLES:START ... --> and <!-- ARTICLES:END -->
+  // 1. Inject live text index between <!-- LIVE_INDEX_START --> and <!-- LIVE_INDEX_END -->
+  const liveIndexMarkerRe = /<!-- LIVE_INDEX_START[\s\S]*?-->[\s\S]*?<!-- LIVE_INDEX_END -->/;
+  if (liveIndexMarkerRe.test(html)) {
+    html = html.replace(liveIndexMarkerRe, renderLiveIndex(articles));
+  } else {
+    warn("Could not find <!-- LIVE_INDEX_START --> ... <!-- LIVE_INDEX_END --> markers in index.html");
+  }
+
+  // 2. Inject article cards between <!-- ARTICLES:START ... --> and <!-- ARTICLES:END -->
   const markerRe = /<!-- ARTICLES:START[\s\S]*?-->[\s\S]*?<!-- ARTICLES:END -->/;
   const replacementBlock = [
     `<!-- ARTICLES:START — auto-synced from ${CANONICAL_ORIGIN}/feed.xml -->`,
@@ -828,7 +944,7 @@ function updateIndexHtml(originalHtml, articles) {
     throw new Error("Could not find <!-- ARTICLES:START --> ... <!-- ARTICLES:END --> markers in index.html");
   }
 
-  // 2. Inject dynamic CollectionPage + ItemList JSON-LD
+  // 3. Inject dynamic CollectionPage + ItemList JSON-LD
   const jsonLdString = JSON.stringify(buildCollectionJsonLd(articles), null, 2);
   const schemaRe = /<script[^>]+id=["']collection-schema["'][^>]*>[\s\S]*?<\/script>/i;
   if (schemaRe.test(html)) {
@@ -840,7 +956,7 @@ function updateIndexHtml(originalHtml, articles) {
     throw new Error('Could not find <script id="collection-schema"> in index.html');
   }
 
-  // 3. Update sync status badge & build timestamp
+  // 4. Update sync status badge & build timestamp
   html = html.replace(
     /<span id="sync-text">[\s\S]*?<\/span>/,
     `<span id="sync-text">Live Editorial Feed · Updated ${escapeHtml(syncDate)}</span>`
@@ -916,6 +1032,8 @@ async function main() {
   // Compare ignoring volatile ISO timestamps if needed, or write updated HTML
   fs.writeFileSync(HTML_PATH, updatedHtml, "utf8");
   log(`Successfully updated ${HTML_PATH} with ${finalArticles.length} verified articles.`);
+
+  syncArticleMarkdownFiles(finalArticles);
 }
 
 main().catch((err) => {

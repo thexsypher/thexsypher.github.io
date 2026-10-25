@@ -4,9 +4,14 @@ description: "A per-seat decision model for mixed estates choosing between $122-
 canonical_url: "https://xsypher.com/article/windows-10-esu-year-2-pay-upgrade-or-replace"
 published_at: "2026-10-05T10:44:56.602Z"
 author: "Ameer Muawiya Khattak"
-category: "Windows"
-category_slug: "windows"
-tags: []
+category: "Software"
+category_slug: "software"
+tags:
+  - "microsoft licensing"
+  - "windows 11 upgrade"
+  - "it asset lifecycle"
+  - "mircosoft"
+cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/60926a7e-d6c9-4164-98b4-d449c9ae9ebe.webp"
 ---
 
 # Windows 10 ESU Year 2: Pay, Upgrade or Replace
@@ -23,5 +28,5 @@ A per-seat decision model for mixed estates choosing between $122-per-device ren
 Read the full analysis, verified benchmarks, and interactive system models on **[xSypher: Windows 10 ESU Year 2: Pay, Upgrade or Replace](https://xsypher.com/article/windows-10-esu-year-2-pay-upgrade-or-replace)**.
 
 - **Canonical Reference:** [https://xsypher.com/article/windows-10-esu-year-2-pay-upgrade-or-replace](https://xsypher.com/article/windows-10-esu-year-2-pay-upgrade-or-replace)
-- **Editorial Vertical:** [Windows](https://xsypher.com/category/windows)
+- **Editorial Vertical:** [Software](https://xsypher.com/category/software)
 - **Publisher:** [xSypher Media](https://xsypher.com)

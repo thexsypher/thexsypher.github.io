@@ -6,7 +6,12 @@ published_at: "2026-10-17T22:56:13.277Z"
 author: "Ameer Muawiya Khattak"
 category: "Gaming"
 category_slug: "gaming"
-tags: []
+tags:
+  - "vram spillover"
+  - "vrr sync"
+  - "frame pacing"
+  - "intel presentmon"
+cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/2532c21d-afd8-45c8-afee-566dd64764a2.webp"
 ---
 
 # Why High FPS Still Stutters: Frame Time, Shaders, and Sync

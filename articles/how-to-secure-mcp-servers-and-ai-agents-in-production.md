@@ -4,9 +4,14 @@ description: "Tool poisoning, token passthrough, and unpinned npm installs break
 canonical_url: "https://xsypher.com/article/how-to-secure-mcp-servers-and-ai-agents-in-production"
 published_at: "2026-10-18T06:00:39.939Z"
 author: "Anwar Iqbal Dawar"
-category: "AI Security"
-category_slug: "ai-security"
-tags: []
+category: "Cybersecurity"
+category_slug: "cybersecurity"
+tags:
+  - "gvisor"
+  - "indirect prompt injection"
+  - "firecracker microvm"
+  - "oauth 2.1"
+cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/a45a2217-dcb6-49b3-8307-64936a221210.webp"
 ---
 
 # How to Secure MCP Servers and AI Agents in Production
@@ -23,5 +28,5 @@ Tool poisoning, token passthrough, and unpinned npm installs break agents after 
 Read the full analysis, verified benchmarks, and interactive system models on **[xSypher: How to Secure MCP Servers and AI Agents in Production](https://xsypher.com/article/how-to-secure-mcp-servers-and-ai-agents-in-production)**.
 
 - **Canonical Reference:** [https://xsypher.com/article/how-to-secure-mcp-servers-and-ai-agents-in-production](https://xsypher.com/article/how-to-secure-mcp-servers-and-ai-agents-in-production)
-- **Editorial Vertical:** [AI Security](https://xsypher.com/category/ai-security)
+- **Editorial Vertical:** [Cybersecurity](https://xsypher.com/category/cybersecurity)
 - **Publisher:** [xSypher Media](https://xsypher.com)
