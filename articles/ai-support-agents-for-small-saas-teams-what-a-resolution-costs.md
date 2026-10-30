@@ -7,10 +7,10 @@ author: "Anwar Iqbal Dawar"
 category: "Ai"
 category_slug: "ai"
 tags:
-  - "help scout ai answers"
   - "intercom fin"
-  - "zendesk ai agents"
   - "freddy ai"
+  - "ai customer support"
+  - "zendesk ai agents"
 cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/external/2026/10/b7b72b7e-1dde-4b50-a3fc-f5e1fa4a0802.jpeg"
 ---
 
