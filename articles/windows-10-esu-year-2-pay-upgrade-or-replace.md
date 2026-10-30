@@ -7,10 +7,10 @@ author: "Ameer Muawiya Khattak"
 category: "Software"
 category_slug: "software"
 tags:
-  - "windows 10 esu"
+  - "microsoft licensing"
   - "windows 11 upgrade"
   - "it asset lifecycle"
-  - "microsoft licensing"
+  - "mircosoft"
 cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/60926a7e-d6c9-4164-98b4-d449c9ae9ebe.webp"
 ---
 

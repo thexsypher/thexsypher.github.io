@@ -7,10 +7,10 @@ author: "Anwar Iqbal Dawar"
 category: "Programming"
 category_slug: "programming"
 tags:
-  - "rest"
-  - "graphql"
-  - "grpc"
   - "api design"
+  - "grpc"
+  - "graphql"
+  - "microservices"
 cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/eebde01e-aef3-426a-a7e1-03428343bee7.webp"
 ---
 
