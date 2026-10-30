@@ -7,9 +7,9 @@ author: "Ameer Muawiya Khattak"
 category: "Gaming"
 category_slug: "gaming"
 tags:
-  - "vram spillover"
-  - "vrr sync"
   - "frame pacing"
+  - "1% lows"
+  - "shader compilation stutter"
   - "intel presentmon"
 cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/2532c21d-afd8-45c8-afee-566dd64764a2.webp"
 ---

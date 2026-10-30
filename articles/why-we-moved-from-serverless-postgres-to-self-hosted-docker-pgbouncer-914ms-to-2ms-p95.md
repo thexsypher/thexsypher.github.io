@@ -7,10 +7,10 @@ author: "Tariq Jameel"
 category: "Programming"
 category_slug: "programming"
 tags:
-  - "pgbouncer"
-  - "drizzle orm"
   - "postgresql"
-  - "prisma"
+  - "pgbouncer"
+  - "docker"
+  - "serverless"
 cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/b2074f8e-26d4-4b91-be20-3e7d06651ddc.webp"
 ---
 

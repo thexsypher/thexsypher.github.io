@@ -7,10 +7,10 @@ author: "Anwar Iqbal Dawar"
 category: "Ai"
 category_slug: "ai"
 tags:
-  - "llm evaluation"
-  - "ai fact-checking"
-  - "large language models"
   - "ai hallucinations"
+  - "large language models"
+  - "rag"
+  - "ai fact-checking"
 cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/d0b12bb3-98b3-419f-906c-2c6d1abb69c9.webp"
 ---
 

@@ -8,9 +8,9 @@ category: "Cybersecurity"
 category_slug: "cybersecurity"
 tags:
   - "edr"
-  - "security operations"
+  - "mdr"
   - "small-business security"
-  - "incident response"
+  - "security operations"
 cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/external/2026/10/53801f0a-9001-41e0-952d-b0f9e236f9e2.png"
 ---
 

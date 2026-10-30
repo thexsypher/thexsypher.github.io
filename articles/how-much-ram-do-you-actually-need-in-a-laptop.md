@@ -7,10 +7,10 @@ author: "Tariq Jameel"
 category: "Gadgets"
 category_slug: "gadgets"
 tags:
-  - "future-proofing laptops"
-  - "ram upgradeability"
-  - "lpcamm2 memory"
   - "soldered ram"
+  - "lpddr5x"
+  - "laptop memory guide"
+  - "ram upgradeability"
 cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/e2fc4944-1738-4aa1-97b8-13bbace0d150.webp"
 ---
 

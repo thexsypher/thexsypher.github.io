@@ -7,10 +7,10 @@ author: "Anwar Iqbal Dawar"
 category: "Cybersecurity"
 category_slug: "cybersecurity"
 tags:
-  - "bpf lsm"
-  - "ai agents"
-  - "zero-trust"
   - "ebpf"
+  - "bpf lsm"
+  - "mcp security"
+  - "ai agents"
 cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/54ccbcc5-dc4d-48bd-a771-458a5d0f2de5.webp"
 ---
 
