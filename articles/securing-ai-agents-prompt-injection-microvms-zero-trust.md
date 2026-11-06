@@ -8,9 +8,9 @@ category: "Cybersecurity"
 category_slug: "cybersecurity"
 tags:
   - "camel architecture"
-  - "google gvisor"
-  - "indirect prompt injection"
-  - "zero trust ai"
+  - "ai agent sandbox"
+  - "mcp tool poisoning"
+  - "firecracker microvm"
 cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/724f3e60-4b8b-4551-b05f-5e13c1fb9699.webp"
 ---
 

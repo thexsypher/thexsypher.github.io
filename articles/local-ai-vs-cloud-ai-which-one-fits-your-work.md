@@ -8,9 +8,9 @@ category: "Ai"
 category_slug: "ai"
 tags:
   - "local llm"
-  - "cloud ai"
+  - "gpu requirements"
   - "inference costs"
-  - "data privacy"
+  - "cloud ai"
 cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/fcb0ba22-42a9-4c95-b4e9-d99bd451877d.webp"
 ---
 
