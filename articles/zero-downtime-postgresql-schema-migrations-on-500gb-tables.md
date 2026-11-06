@@ -7,10 +7,10 @@ author: "Khizar Muzammil"
 category: "How to"
 category_slug: "how-to"
 tags:
-  - "schema migrations"
-  - "database locking"
-  - "devops"
+  - "postgresql"
   - "pgbouncer"
+  - "schema migrations"
+  - "mvcc"
 cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/11/5e1e3c03-3be9-4783-901f-acc8f5567815.webp"
 ---
 
