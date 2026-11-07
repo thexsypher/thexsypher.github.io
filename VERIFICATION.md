@@ -36,9 +36,9 @@ Generated: 2026-10-19 · Branch: arena/fe61be9d-xcipher · Base: c3710c2
 - index.html: single file, embedded CSS, no external JS except Google Fonts (optional, degrades to system), semantic HTML5, heading hierarchy h1→h2→h3, <header><main><section><article><footer>, skip-link, time datetime, aria-live grid.
 - No analytics widgets: header/hero/arch/stack/articles/footer/entity only — no GH cards, commit graphs, Plausible, GA.
 - Verified stack section: 6 groups, 40+ badges, confirmed versions marked ✓.
-- Latest Publications: ARTICLES:START/END markers, fallback crawlable cards, syncBadge, build-time, SEO strip explaining dofollow contract.
+- Latest Publications: ARTICLES:START/END markers, fallback crawlable cards, syncBadge, build-time, SEO strip explaining follow link contract.
 - SEO: meta robots index,follow,max-image-preview:large, OG + Twitter large, canonical, Organization/WebSite/AboutPage + dynamic CollectionPage/ItemList/BlogPosting, publisher#id linked, alternateName preserved, BreadcrumbList.
-- 100% dofollow: grep for nofollow/sponsored fails workflow, every card is <a href="https://xsypher.com/article/slug">.
+- 100% follow architecture: grep for nofollow/sponsored fails workflow, every card is <a href="https://xsypher.com/article/slug">.
 - Script: Node built-ins only, fetches feed → sitemap images → og fallback (concurrency 5) → validate 200+!homepage → render grid + JSON-LD → inject markers → idempotent (no-op if unchanged) → preserves on feed failure.
 - Workflow: schedule 0 */6 * * *, workflow_dispatch, push main; setup-node 22; sync; validate grep checks; commit+push if diff.
 

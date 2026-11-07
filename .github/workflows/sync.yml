@@ -45,7 +45,7 @@ jobs:
           set -euo pipefail
           node scripts/sync.mjs
 
-      - name: Verify Technical SEO & Dofollow Integrity
+      - name: Verify Technical SEO & Follow Link Integrity
         run: |
           set -euo pipefail
           echo "Verifying index.html SEO invariants..."
@@ -56,9 +56,9 @@ jobs:
             exit 1
           fi
 
-          # 2. 100% Dofollow architecture on anchor tags (no rel="nofollow" or rel="sponsored")
+          # 2. 100% Follow architecture on anchor tags (no rel="nofollow" or rel="sponsored")
           if grep -qiE '<a[^>]+rel=["'\''][^"'\'']*(nofollow|sponsored|ugc)' index.html; then
-            echo "ERROR: Dofollow invariant violated — restrictive rel attribute found on <a> tag"
+            echo "ERROR: Follow invariant violated — restrictive rel attribute found on <a> tag"
             exit 1
           fi
 
@@ -85,7 +85,7 @@ jobs:
       - name: Commit & Push Updated Showcase Page
         run: |
           set -euo pipefail
-          git add -A index.html articles/
+          git add -A index.html articles/ sitemap.xml
           if git diff --cached --quiet; then
             echo "No content changes detected in index.html or articles/ — skipping commit."
             exit 0

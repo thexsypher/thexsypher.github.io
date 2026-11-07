@@ -24,7 +24,7 @@
  *      - Topic tags (<meta property="article:tag"> / JSON-LD keywords)
  *      - Reading time (JSON-LD timeRequired PTxM)
  *      - Canonical URL (<link rel="canonical">)
- *   5. Renders responsive, 100% dofollow article banner cards between
+ *   5. Renders responsive, 100% crawlable standard follow article banner cards between
  *      <!-- ARTICLES:START --> and <!-- ARTICLES:END --> in index.html and
  *      updates the dynamic CollectionPage + ItemList (BlogPosting/TechArticle)
  *      JSON-LD structured data.
@@ -807,7 +807,7 @@ function renderLiveIndex(articles) {
       const snippet = escapeHtml(
         cleanSnippet.length > 160 ? `${cleanSnippet.slice(0, 157).trim()}...` : cleanSnippet
       );
-      return `        <li><a href="${url}" rel="dofollow"><strong>${title}</strong></a> - ${snippet}</li>`;
+      return `        <li><a href="${url}"><strong>${title}</strong></a> - ${snippet}</li>`;
     })
     .join("\n");
 
@@ -903,6 +903,65 @@ function syncArticleMarkdownFiles(articles) {
   if (count > 0) {
     log(`Synchronized ${count} article markdown files in articles/.`);
   }
+}
+
+function updateSitemapXml(articles) {
+  const articlesDir = path.resolve(__dirname, "..", "articles");
+  const sitemapPath = path.resolve(__dirname, "..", "sitemap.xml");
+  const today = new Date().toISOString().slice(0, 10);
+  const repoOrigin = "https://thexsypher.github.io";
+
+  const articleMap = new Map();
+  // First seed from disk articles/
+  if (fs.existsSync(articlesDir)) {
+    const files = fs.readdirSync(articlesDir).filter((f) => f.endsWith(".md")).sort();
+    for (const f of files) {
+      const slug = f.replace(/\.md$/, "");
+      const content = fs.readFileSync(path.join(articlesDir, f), "utf8");
+      const m = content.match(/published_at:\s*"([^"]+)"/);
+      articleMap.set(slug, m ? m[1].slice(0, 10) : today);
+    }
+  }
+
+  // Also include any new articles from sync
+  for (const a of articles || []) {
+    if (!a.slug) continue;
+    const dateStr = a.publishedAt && !isNaN(new Date(a.publishedAt).getTime())
+      ? new Date(a.publishedAt).toISOString().slice(0, 10)
+      : today;
+    articleMap.set(a.slug, dateStr);
+  }
+
+  const articleEntries = Array.from(articleMap.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([slug, lastmod]) => {
+      const loc = `${repoOrigin}/articles/${slug}`;
+      return [
+        `  <url>`,
+        `    <loc>${loc}</loc>`,
+        `    <lastmod>${lastmod}</lastmod>`,
+        `    <changefreq>monthly</changefreq>`,
+        `    <priority>0.8</priority>`,
+        `  </url>`,
+      ].join("\n");
+    });
+
+  const xml = [
+    `<?xml version="1.0" encoding="UTF-8"?>`,
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
+    `  <url>`,
+    `    <loc>${repoOrigin}/</loc>`,
+    `    <lastmod>${today}</lastmod>`,
+    `    <changefreq>weekly</changefreq>`,
+    `    <priority>1.0</priority>`,
+    `  </url>`,
+    ...articleEntries,
+    `</urlset>`,
+    "",
+  ].join("\n");
+
+  fs.writeFileSync(sitemapPath, xml, "utf8");
+  log(`Successfully updated sitemap.xml with root and ${articleEntries.length} article URLs.`);
 }
 
 function updateIndexHtml(originalHtml, articles) {
@@ -1034,6 +1093,7 @@ async function main() {
   log(`Successfully updated ${HTML_PATH} with ${finalArticles.length} verified articles.`);
 
   syncArticleMarkdownFiles(finalArticles);
+  updateSitemapXml(finalArticles);
 }
 
 main().catch((err) => {
