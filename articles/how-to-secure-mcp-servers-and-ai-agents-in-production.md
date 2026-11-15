@@ -7,9 +7,9 @@ author: "Anwar Iqbal Dawar"
 category: "Cybersecurity"
 category_slug: "cybersecurity"
 tags:
-  - "model context protocol"
-  - "mcp security"
+  - "gvisor"
   - "indirect prompt injection"
+  - "firecracker microvm"
   - "oauth 2.1"
 cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articles/2026/10/a45a2217-dcb6-49b3-8307-64936a221210.webp"
 ---
