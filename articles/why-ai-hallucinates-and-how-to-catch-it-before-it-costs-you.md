@@ -1,6 +1,6 @@
 ---
 title: "Why AI Hallucinates and How to Catch It Before It Costs You"
-description: "Language models are trained to guess, not to say \"I don't know.\" Here is why they fabricate citations and numbers, plus the validation workflow we use."
+description: "Why language models fabricate facts and citations, what retrieval fixes and what it doesn't, and a workflow for checking AI output before you rely on it"
 canonical_url: "https://xsypher.com/article/why-ai-hallucinates-and-how-to-catch-it-before-it-costs-you"
 published_at: "2026-10-15T22:28:48.508Z"
 author: "Anwar Iqbal Dawar"
@@ -20,7 +20,7 @@ cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articl
 
 ## Executive Summary
 
-Language models are trained to guess, not to say "I don't know." Here is why they fabricate citations and numbers, plus the validation workflow we use.
+Why language models fabricate facts and citations, what retrieval fixes and what it doesn't, and a workflow for checking AI output before you rely on it
 
 ---
 

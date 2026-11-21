@@ -1,6 +1,6 @@
 ---
 title: "Windows 10 ESU Year 2: Pay, Upgrade or Replace"
-description: "A per-seat decision model for mixed estates choosing between $122-per-device renewals, Windows 11 upgrades and hardware replacement."
+description: "A per-seat decision model for mixed estates facing Year 2 pricing. Covers ESU costs, upgrade paths, replacement math and cloud entitlements."
 canonical_url: "https://xsypher.com/article/windows-10-esu-year-2-pay-upgrade-or-replace"
 published_at: "2026-10-05T10:44:56.602Z"
 author: "Ameer Muawiya Khattak"
@@ -20,7 +20,7 @@ cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articl
 
 ## Executive Summary
 
-A per-seat decision model for mixed estates choosing between $122-per-device renewals, Windows 11 upgrades and hardware replacement.
+A per-seat decision model for mixed estates facing Year 2 pricing. Covers ESU costs, upgrade paths, replacement math and cloud entitlements.
 
 ---
 

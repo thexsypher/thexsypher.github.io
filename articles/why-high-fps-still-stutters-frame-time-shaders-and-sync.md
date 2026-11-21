@@ -1,6 +1,6 @@
 ---
 title: "Why High FPS Still Stutters: Frame Time, Shaders, and Sync"
-description: "A 140 FPS average hides 100 ms frame-time spikes. Use PresentMon to isolate shader compilation, CPU limits, VRAM overflow, and VRR sync stutter."
+description: "Getting 140 FPS but gameplay still hitches? Learn how to read frame-time graphs, fix 1% low drops, and solve shader compilation, VRAM, and VRR stutter."
 canonical_url: "https://xsypher.com/article/why-high-fps-still-stutters-frame-time-shaders-and-sync"
 published_at: "2026-10-17T22:56:13.277Z"
 author: "Ameer Muawiya Khattak"
@@ -20,7 +20,7 @@ cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articl
 
 ## Executive Summary
 
-A 140 FPS average hides 100 ms frame-time spikes. Use PresentMon to isolate shader compilation, CPU limits, VRAM overflow, and VRR sync stutter.
+Getting 140 FPS but gameplay still hitches? Learn how to read frame-time graphs, fix 1% low drops, and solve shader compilation, VRAM, and VRR stutter.
 
 ---
 
