@@ -1,6 +1,6 @@
 ---
 title: "Securing AI Agents: Prompt Injection, MicroVMs, Zero Trust"
-description: "Isolate AI agent runtimes in Firecracker microVMs or gVisor, enforce task-scoped Zero Trust tokens, sign Ed25519 approvals, and block outbound data leaks."
+description: "How to stop indirect prompt injection and MCP tool poisoning using Firecracker microVMs, gVisor, CaMeL data-flow policies, Ed25519 HITL, and egress proxies."
 canonical_url: "https://xsypher.com/article/securing-ai-agents-prompt-injection-microvms-zero-trust"
 published_at: "2026-10-20T02:08:16.007Z"
 author: "Anwar Iqbal Dawar"
@@ -20,7 +20,7 @@ cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articl
 
 ## Executive Summary
 
-Isolate AI agent runtimes in Firecracker microVMs or gVisor, enforce task-scoped Zero Trust tokens, sign Ed25519 approvals, and block outbound data leaks.
+How to stop indirect prompt injection and MCP tool poisoning using Firecracker microVMs, gVisor, CaMeL data-flow policies, Ed25519 HITL, and egress proxies.
 
 ---
 

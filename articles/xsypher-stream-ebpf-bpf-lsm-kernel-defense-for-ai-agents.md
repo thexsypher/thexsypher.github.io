@@ -1,6 +1,6 @@
 ---
 title: "xSypher-Stream: Inline eBPF & BPF LSM Kernel Defense for AI Agent Hosts"
-description: "Source-level audit of xSypher-Stream: eBPF CO-RE lineage telemetry, a capability-split C++20 collector, six MITRE ATT&CK rules, and live BPF LSM kernel prerequisites."
+description: "Deep architectural audit of xSypher-Stream: how eBPF CO-RE tracepoints, a 32-byte ABI, and BPF LSM hooks block MCP prompt-injection chains in ~2.1 ms."
 canonical_url: "https://xsypher.com/article/xsypher-stream-ebpf-bpf-lsm-kernel-defense-for-ai-agents"
 published_at: "2026-10-30T12:47:21.985Z"
 author: "Anwar Iqbal Dawar"
@@ -20,7 +20,7 @@ cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articl
 
 ## Executive Summary
 
-Source-level audit of xSypher-Stream: eBPF CO-RE lineage telemetry, a capability-split C++20 collector, six MITRE ATT&CK rules, and live BPF LSM kernel prerequisites.
+Deep architectural audit of xSypher-Stream: how eBPF CO-RE tracepoints, a 32-byte ABI, and BPF LSM hooks block MCP prompt-injection chains in ~2.1 ms.
 
 ---
 

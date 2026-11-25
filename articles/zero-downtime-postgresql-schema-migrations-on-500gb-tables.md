@@ -1,6 +1,6 @@
 ---
 title: "Zero-Downtime PostgreSQL Schema Migrations on 500GB+ Tables"
-description: "A 2ms ALTER TABLE can still cause an outage. Use 50ms lock timeouts, NOT VALID constraints, and throttled keyset backfills to migrate 500GB+ Postgres tables."
+description: "Why a 2ms ALTER TABLE kills production, and how 50ms lock timeouts, NOT VALID constraints, and LSN-throttled backfills keep 500GB+ PostgreSQL tables online."
 canonical_url: "https://xsypher.com/article/zero-downtime-postgresql-schema-migrations-on-500gb-tables"
 published_at: "2026-11-06T17:24:22.384Z"
 author: "Khizar Muzammil"
@@ -20,7 +20,7 @@ cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articl
 
 ## Executive Summary
 
-A 2ms ALTER TABLE can still cause an outage. Use 50ms lock timeouts, NOT VALID constraints, and throttled keyset backfills to migrate 500GB+ Postgres tables.
+Why a 2ms ALTER TABLE kills production, and how 50ms lock timeouts, NOT VALID constraints, and LSN-throttled backfills keep 500GB+ PostgreSQL tables online.
 
 ---
 

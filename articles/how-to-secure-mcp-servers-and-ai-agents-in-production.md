@@ -1,6 +1,6 @@
 ---
 title: "How to Secure MCP Servers and AI Agents in Production"
-description: "Tool poisoning, token passthrough, and unpinned npm installs break agents after launch. Follow this production hardening order to lock down MCP servers."
+description: "Harden production MCP servers and AI agents with per-server OAuth 2.1 tokens, SHA-256 tool pinning, Firecracker/gVisor sandboxes, and egress locks."
 canonical_url: "https://xsypher.com/article/how-to-secure-mcp-servers-and-ai-agents-in-production"
 published_at: "2026-10-18T06:00:39.939Z"
 author: "Anwar Iqbal Dawar"
@@ -20,7 +20,7 @@ cover_image: "https://pub-cb79a088effc4ad3a3636de153e20b63.r2.dev/xsypher/articl
 
 ## Executive Summary
 
-Tool poisoning, token passthrough, and unpinned npm installs break agents after launch. Follow this production hardening order to lock down MCP servers.
+Harden production MCP servers and AI agents with per-server OAuth 2.1 tokens, SHA-256 tool pinning, Firecracker/gVisor sandboxes, and egress locks.
 
 ---
 
